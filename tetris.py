@@ -15,27 +15,27 @@ BLACK = (0, 0, 0)
 SHAPES = [
     [[1, 1, 1, 1]],  # I
     [[1, 1, 1],
-    [0, 1, 0]],     # T
+     [0, 1, 0]],     # T
     [[1, 1, 1],
-    [1, 0, 0]],     # L
+     [1, 0, 0]],     # L
     [[1, 1, 1],
-    [0, 0, 1]],     # J
+     [0, 0, 1]],     # J
     [[0, 1, 1],
-    [1, 1, 0]],     # S
+     [1, 1, 0]],     # S
     [[1, 1, 0],
-    [0, 1, 1]],     # Z
+     [0, 1, 1]],     # Z
     [[1, 1],
-    [1, 1]]         # O
+     [1, 1]]         # O
 ]
 
 # Different colors for each shape
-COLORS = [(255, 0, 0),  # Red
-        (0, 255, 0),  # Green
-        (0, 0, 255),  # Blue
-        (255, 255, 0),  # Yellow
-        (255, 0, 255),  # Magenta
-        (0, 255, 255),  # Cyan
-        (255, 165, 0)]  # Orange
+COLORS = [(255, 0, 0),    # Red
+          (0, 255, 0),    # Green
+          (0, 0, 255),    # Blue
+          (255, 255, 0),  # Yellow
+          (255, 0, 255),  # Magenta
+          (0, 255, 255),  # Cyan
+          (255, 165, 0)]  # Orange
 
 # Define the Tetris board
 board = [[BLACK for _ in range(10)] for _ in range(20)]
@@ -74,12 +74,12 @@ def merge_piece(piece, piece_x, piece_y):
                 y_pos = i + piece_y
                 board[y_pos][x_pos] = COLORS[piece_color_index]
     check_full_lines()
-    check_game_over(piece_y)
 
 def check_full_lines():
-    global board
+    global board, score
     new_board = [row for row in board if BLACK in row]
     lines_deleted = len(board) - len(new_board)
+    score += lines_deleted * 5  # Update the score
     for _ in range(lines_deleted):
         new_board.insert(0, [BLACK for _ in range(10)])
     board = new_board
@@ -104,13 +104,15 @@ def new_piece():
     piece_color_index = random.randint(0, len(COLORS) - 1)
     return random.choice(SHAPES), 3, 0
 
-# Game loop
-running = True
+# Game initialization
+score = 0
 piece, piece_x, piece_y = new_piece()
 last_move_time = pygame.time.get_ticks()
 fall_speed = 500  # Milliseconds per step
 fall_time = 0
+running = True
 
+# Main game loop
 while running:
     screen.fill(BLACK)
 
@@ -149,6 +151,12 @@ while running:
     draw_board()
     draw_piece(piece, piece_x, piece_y)
 
+    # Draw the score
+    font = pygame.font.Font(None, 24)
+    score_text = font.render(f"Score: {score}", True, WHITE)
+    screen.blit(score_text, (10, 10))
+
+    # Game over condition
     if not running:
         font = pygame.font.Font(None, 36)
         text = font.render("GAME OVER", True, WHITE)
