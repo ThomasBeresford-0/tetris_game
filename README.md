@@ -24,18 +24,21 @@ Run the game by executing the following command in your terminal:
 bash
 Copy code
 python tetris.py
+
 Controls
 Left Arrow: Move the falling piece to the left.
 Right Arrow: Move the falling piece to the right.
 Down Arrow: Accelerate the falling speed of the piece.
 Up Arrow: Rotate the falling piece clockwise.
 Spacebar: Pause or resume the game.
+
 Features
 Classic Tetris gameplay experience.
 Simple controls for easy gameplay.
+
 Enjoyable music and sound effects to enhance the gaming experience.
 Contributing
-This Tetris game project is maintained by [Your Name]. All the code and assets were created by [Your Name].
+This Tetris game project is maintained by Thomas Beresford. All the code and assets were created by Thomas Beresford.
 
 Contributions to the Tetris game project are welcome! If you'd like to contribute, follow these steps:
 
@@ -44,6 +47,7 @@ Create a new branch for your feature or bug fix.
 Make your changes and commit them with descriptive messages.
 Push your changes to your fork.
 Submit a pull request, explaining your changes.
+
 License
 This project is licensed under the MIT License. You are free to use, modify, and distribute this game, subject to the terms and conditions of the license.
 
