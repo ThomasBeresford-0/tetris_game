@@ -44,6 +44,15 @@ board = [[BLACK for _ in range(10)] for _ in range(20)]
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Tetris")
 
+# Initialize the mixer module
+pygame.mixer.init()
+
+# Load the Tetris theme music
+pygame.mixer.music.load('tetris_theme.mp3')
+
+# Start playing the music
+pygame.mixer.music.play(-1)  # -1 means looping indefinitely
+
 # Define functions
 def draw_board():
     for y in range(20):
